@@ -40,7 +40,7 @@ do {
 } while(!app.checkPasswordComplexity(password));
 System.out.println("Password successfully captured");
 
-// Cell number input loop
+// Variable renamed for clarity
 String cellNumber;
 do {
     System.out.print("Enter cell number: ");
@@ -49,7 +49,7 @@ do {
         System.out.println("Cell number is incorrectly formatted or does not contain an international code; please correct the number and try again.");
     }
 } while(!app.checkCellPhoneNumber(cellNumber));
-System.out.println("Cell phone successfully captured");
+System.out.println("Cell number successfully captured");
 
         // Call registerUser() and display result
         System.out.println(app.registerUser(username, password, cellNumber));
