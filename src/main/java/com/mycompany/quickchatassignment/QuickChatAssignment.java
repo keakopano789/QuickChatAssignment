@@ -17,17 +17,19 @@ public class QuickChatAssignment {
         Login app = new Login();  // Create an object of Login class
 
         // === Registration Section ===
-        // Username input loop
+         // This section validates the username input
 String username;
 do {
     System.out.print("Enter username: ");
     username = sc.nextLine();
-    if(!app.checkUserName(username)){
-        System.out.println("Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.");
+    if(!app.checkUserName(username)) {
+        System.out.println("Username is not correctly formatted; please ensure that your u");
         //This loop ensures the username is valid before continuing
     }
 } while(!app.checkUserName(username));
 System.out.println("Username successfully captured");
+
+  
 
 // Password input loop
 String password;
