@@ -46,14 +46,12 @@ public class Login {
         return password.length() >= 8 && hasUpper && hasDigit && hasSpecial;
     }
 
-    // Check Cell Phone Number (+27 followed by 9 digits)
-    public boolean checkCellPhoneNumber(String cellNumber) {
-        // Must start with +27 and be exactly 12 characters long (+27 + 9 digits)
-        if (!cellNumber.startsWith("+27")) {
-            return false;
-        }
-        return false;
+   // Check Cell Phone Number (+27 followed by 9 digits)
+public boolean checkCellPhoneNumber(String cellNumber) {
+    // Must start with +27 and then have exactly 9 digits
+    return cellNumber.matches("\\+27\\d{9}");
 }
+
 //  Register User
     public String registerUser(String username, String password, String cellNumber) {
         if (!checkUserName(username)) {

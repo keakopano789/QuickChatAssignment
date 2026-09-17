@@ -54,7 +54,7 @@ System.out.println("Password successfully captured");
 // Variable renamed for clarity
 String cellNumber;
 do {
-    System.out.print("Enter cell number: ");
+    System.out.print("Enter cell number ");
     cellNumber = sc.nextLine();
     if(!app.checkCellPhoneNumber(cellNumber)){
         System.out.println("Cell number is incorrectly formatted or does not contain an international code; please correct the number and try again.");
