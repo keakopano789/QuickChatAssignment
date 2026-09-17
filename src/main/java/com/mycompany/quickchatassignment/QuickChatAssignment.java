@@ -16,6 +16,15 @@ public class QuickChatAssignment {
     Scanner sc = new Scanner(System.in);
         Login app = new Login();  // Create an object of Login class
 
+      // === Ask for name and surname ===
+    System.out.print("Enter your first name: ");
+    String firstName = sc.nextLine();
+
+    System.out.print("Enter your surname: ");
+    String surname = sc.nextLine();
+
+    System.out.println("Welcome " + firstName + " " + surname + "!");
+    
         // === Registration Section ===
          // This section validates the username input
 String username;
