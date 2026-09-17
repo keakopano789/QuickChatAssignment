@@ -41,6 +41,7 @@ System.out.println("Username successfully captured");
   
 
 // Password input loop
+//This loop ensures the password meets complexity rules
 String password;
 do {
     System.out.print("Enter password: ");
