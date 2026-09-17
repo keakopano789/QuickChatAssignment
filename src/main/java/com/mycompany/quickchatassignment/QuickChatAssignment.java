@@ -23,7 +23,7 @@ do {
     System.out.print("Enter username: ");
     username = sc.nextLine();
     if(!app.checkUserName(username)) {
-        System.out.println("Username is not correctly formatted; please ensure that your u");
+        System.out.println("Username is not correctly formatted; please ensure that your username is contains an underscore and is no more than five characters long");
         //This loop ensures the username is valid before continuing
     }
 } while(!app.checkUserName(username));
