@@ -22,7 +22,7 @@ public class QuickChatAssignment {
 
     System.out.print("Enter your surname: ");
     String surname = sc.nextLine();
-
+// The loop welcomes the user
     System.out.println("Welcome " + firstName + " " + surname + "!");
     
         // === Registration Section ===
