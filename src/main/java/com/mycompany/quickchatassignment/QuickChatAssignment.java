@@ -78,7 +78,7 @@ System.out.println("Cell number successfully captured");
         // Verify login
         boolean success = app.loginUser(lu, lp);
 
-        // Show login status message
+        // Show login status message to the user
         System.out.println(app.returnLoginStatus(success, "Kopano" , "Student"));   
     }
 }
