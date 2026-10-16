@@ -11,10 +11,7 @@ import java.util.Random;
  * Message class for QuickChat (Part 2).
  * Holds one message and the methods that check, hash, send and store it.
  *
- * References:
- * Google (n.d.) Gson User Guide. Available at:
- * https://github.com/google/gson/blob/main/UserGuide.md
- * (Gson is used to write the stored messages to a JSON file.)
+ * 
  *
  * @author Student
  */
