@@ -115,7 +115,7 @@ public class Message {
 
     // 1 = send, 2 = disregard, 3 = store
     public String sentMessage(int choice) {
-        if (choice == 1) {
+      if  (choice == 1) {
             if (sentCount >= MAX_MESSAGES) {
                 return "Message limit reached.";
             }
