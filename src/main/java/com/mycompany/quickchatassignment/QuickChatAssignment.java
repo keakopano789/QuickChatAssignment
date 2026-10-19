@@ -102,9 +102,9 @@ public class QuickChatAssignment {
             option = readNumber(sc, "Choose an option: ");
 
             if (option == 1) {
-                if (messagesEntered >= numMessages) {
-                    System.out.println("You have already entered all " + numMessages + " messages.");
-                }
+//                if (messagesEntered >= numMessages) {
+//                    System.out.println("You have already entered all " + numMessages + " messages.");
+//                }
 
                 // The for loop only allows the set number of messages
                 for (int i = messagesEntered; i < numMessages; i++) {

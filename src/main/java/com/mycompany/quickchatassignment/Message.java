@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -23,10 +22,12 @@ public class Message {
     private final String recipient;
     private final String text;
 
-    // Shared by all messages while the program runs
-    private static final ArrayList<Message> sentMessages = new ArrayList<>();
-    private static final ArrayList<Message> storedMessages = new ArrayList<>();
-    private static int totalSent = 0;
+    // Single-dimension arrays shared by all messages while the program runs
+    private static final int MAX_MESSAGES = 100;
+    private static final Message[] sentMessages = new Message[MAX_MESSAGES];
+    private static final Message[] storedMessages = new Message[MAX_MESSAGES];
+    private static int sentCount = 0;     // how many messages are in sentMessages
+    private static int storedCount = 0;   // how many messages are in storedMessages
     private static final String FILE_NAME = "messages.json";
 
     // Constructor
@@ -115,8 +116,11 @@ public class Message {
     // 1 = send, 2 = disregard, 3 = store
     public String sentMessage(int choice) {
         if (choice == 1) {
-            sentMessages.add(this);
-            totalSent++;
+            if (sentCount >= MAX_MESSAGES) {
+                return "Message limit reached.";
+            }
+            sentMessages[sentCount] = this;
+            sentCount++;
             return "Message successfully sent.";
         } else if (choice == 2) {
             return "Press 0 to delete the message.";
@@ -130,10 +134,22 @@ public class Message {
 
     // Saves all stored messages to a JSON file
     public void storeMessage() {
-        storedMessages.add(this);
+        if (storedCount >= MAX_MESSAGES) {
+            System.out.println("Message limit reached.");
+            return;
+        }
+        storedMessages[storedCount] = this;
+        storedCount++;
+
+        // Copy only the filled part of the array so no empty (null) spots are saved
+        Message[] toSave = new Message[storedCount];
+        for (int i = 0; i < storedCount; i++) {
+            toSave[i] = storedMessages[i];
+        }
+
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try (FileWriter writer = new FileWriter(FILE_NAME)) {
-            gson.toJson(storedMessages, writer);
+            gson.toJson(toSave, writer);
         } catch (IOException e) {
             System.out.println("Could not save to the JSON file: " + e.getMessage());
         }
@@ -154,21 +170,20 @@ public class Message {
     // Returns all the messages sent while the program is running
     public static String printMessages() {
         String all = "";
-        for (int i = 0; i < sentMessages.size(); i++) {
-            all = all + sentMessages.get(i).getDetails() + "\n\n";
+        for (int i = 0; i < sentCount; i++) {
+            all = all + sentMessages[i].getDetails() + "\n\n";
         }
         return all;
     }
 
     // Returns the total number of messages sent
     public static int returnTotalMessages() {
-        return totalSent;
+        return sentCount;
     }
 
-    // Clears the lists and the counter (used by the unit tests)
+    // Empties the arrays by resetting the counters (used by the unit tests)
     public static void resetAll() {
-        sentMessages.clear();
-        storedMessages.clear();
-        totalSent = 0;
+        sentCount = 0;
+        storedCount = 0;
     }
 }
