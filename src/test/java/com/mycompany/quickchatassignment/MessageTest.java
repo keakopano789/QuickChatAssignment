@@ -21,6 +21,7 @@ public class MessageTest {
 
     @BeforeEach
     public void setUp() {
+       Message.setFileName("test-messages.json"); 
         Message.resetAll();   // start every test with empty lists
     }
 
