@@ -7,7 +7,8 @@ package com.mycompany.quickchatassignment;
 import java.util.Scanner;
 
 /**
- * QuickChat - Part 1 (register and login) and Part 2 (send messages).
+ * QuickChat - Part 1 (register and login), Part 2 (send messages)
+ * and Part 3 (arrays, stored messages menu and reports).
  *
  * @author Student
  */
@@ -22,6 +23,54 @@ public class QuickChatAssignment {
                 return Integer.parseInt(input.trim());
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a number.");
+            }
+        }
+    }
+
+    // Part 3: the "Stored Messages" menu (uses the arrays in the Message class)
+    private static void storedMessagesMenu(Scanner sc, String senderName) {
+        int choice = 0;
+        while (choice != 7) {
+            System.out.println("\n--- Stored Messages ---");
+            System.out.println("1) Display the sender and recipient of all stored messages");
+            System.out.println("2) Display the longest stored message");
+            System.out.println("3) Search for a message ID");
+            System.out.println("4) Search for all messages for a recipient");
+            System.out.println("5) Delete a message using its hash");
+            System.out.println("6) Display a report of all messages");
+            System.out.println("7) Back to the main menu");
+            choice = readNumber(sc, "Choose an option: ");
+
+            if (choice == 1) {
+                System.out.println(Message.storedSendersAndRecipients(senderName));
+            } else if (choice == 2) {
+                System.out.println("Longest stored message: " + Message.longestStoredMessage());
+            } else if (choice == 3) {
+                System.out.print("Enter the message ID: ");
+                String id = sc.nextLine().trim();
+                System.out.println(Message.displayByMessageID(id));
+            } else if (choice == 4) {
+                System.out.print("Enter the recipient cell number: ");
+                String recipient = sc.nextLine().trim();
+                String[] results = Message.searchByRecipient(recipient);
+                if (results.length == 0) {
+                    System.out.println("No messages found for " + recipient + ".");
+                } else {
+                    for (int i = 0; i < results.length; i++) {
+                        System.out.println((i + 1) + ") " + results[i]);
+                    }
+                }
+            } else if (choice == 5) {
+                System.out.print("Enter the message hash: ");
+                String hash = sc.nextLine().trim();
+                System.out.println(Message.deleteByMessageHash(hash));
+            } else if (choice == 6) {
+                System.out.println(Message.sentReport());
+                System.out.println(Message.storedReport());
+            } else if (choice == 7) {
+                System.out.println("Returning to the main menu.");
+            } else {
+                System.out.println("Please choose 1 to 7.");
             }
         }
     }
@@ -90,6 +139,12 @@ public class QuickChatAssignment {
         // === Part 2: QuickChat ===
         System.out.println("\nWelcome to QuickChat.");
 
+        // Part 3: read the stored messages from the JSON file into the stored array
+        int loadedCount = Message.loadStoredMessages();
+        if (loadedCount > 0) {
+            System.out.println(loadedCount + " stored message(s) loaded from the JSON file.");
+        }
+
         int numMessages = readNumber(sc, "How many messages do you want to enter? ");
         int messagesEntered = 0;
 
@@ -99,6 +154,7 @@ public class QuickChatAssignment {
             System.out.println("\n1) Send Messages");
             System.out.println("2) Show recently sent messages");
             System.out.println("3) Quit");
+            System.out.println("4) Stored Messages");
             option = readNumber(sc, "Choose an option: ");
 
             if (option == 1) {
@@ -167,8 +223,10 @@ public class QuickChatAssignment {
                 System.out.println("Coming Soon.");
             } else if (option == 3) {
                 System.out.println("Goodbye!");
+            } else if (option == 4) {
+                storedMessagesMenu(sc, firstName + " " + surname);
             } else {
-                System.out.println("Please choose 1, 2 or 3.");
+                System.out.println("Please choose 1, 2, 3 or 4.");
             }
         }
     }
