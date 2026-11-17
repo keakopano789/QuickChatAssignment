@@ -10,7 +10,7 @@ import java.util.Scanner;
  * QuickChat - Part 1 (register and login), Part 2 (send messages)
  * and Part 3 (arrays, stored messages menu and reports).
  *
- * @author Student -ST10522631
+ * @author Student Kopano Maboi -ST10522631
  */
 public class QuickChatAssignment {
 
