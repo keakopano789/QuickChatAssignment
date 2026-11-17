@@ -16,7 +16,7 @@ import java.util.Random;
  *
  *
  *
- * @author Student
+ * @author Kopano Maboi- ST10522631
  */
 public class Message {
 
