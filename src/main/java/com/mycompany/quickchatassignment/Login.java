@@ -6,7 +6,7 @@ package com.mycompany.quickchatassignment;
 
 /**
  *
- * @author Student
+ * @author Kopano Maboi ST10522631
  */
 public class Login {
     private String username;
