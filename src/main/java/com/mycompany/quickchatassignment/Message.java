@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.Random;
 
 /**
- * Message class for QuickChat (Parts 2 and 3).
- * Holds one message and the methods that check, hash, send, store, search
- * and report on messages. Plain arrays are used (no ArrayList).
+ * Message class for QuickChat (Parts 2 and 3). Holds one message and the
+ * methods that check, hash, send, store, search and report on messages. Plain
+ * arrays are used (no ArrayList).
  *
  *
  *
@@ -193,6 +193,8 @@ public class Message {
 
     // Part 3: reads the JSON file into the stored array. Call it once when the program starts.
     // Returns how many messages were loaded.
+    // Adapted from: Google, n.d. Gson User Guide. [Online]. Available at:
+    // https://github.com/google/gson/blob/main/UserGuide.md [Accessed 18 November 2026].
     public static int loadStoredMessages() {
         File file = new File(fileName);
         if (!file.exists()) {
@@ -281,7 +283,6 @@ public class Message {
     }
 
     // ---------- Part 3 features ----------
-
     // (a) Sender and recipient of every stored message
     // (the sender is the user who logged in, because messages only store the recipient)
     public static String storedSendersAndRecipients(String sender) {
