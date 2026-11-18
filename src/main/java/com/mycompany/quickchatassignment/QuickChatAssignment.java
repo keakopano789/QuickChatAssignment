@@ -143,7 +143,9 @@ public class QuickChatAssignment {
         int loadedCount = Message.loadStoredMessages();
         if (loadedCount > 0) {
             System.out.println(loadedCount + " stored message(s) loaded from the JSON file.");
+       System.out.println(Message.storedReport());
         }
+       
 
         int numMessages = readNumber(sc, "How many messages do you want to enter? ");
         int messagesEntered = 0;
